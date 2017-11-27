@@ -4,16 +4,12 @@
 #define ROWS 9
 #define COLS 9
 
-/* Start working on the solution. */
-
 void printBoard(int board[ROWS][COLS]);
 int fillBoard(int board[ROWS][COLS], char* filename);
 int existsInSector(int board[ROWS][COLS], int row, int col, int number);
 int existsInRow(int board[ROWS][COLS], int row, int col, int number);
 int existsInCol(int board[ROWS][COLS], int row, int col, int number);
 int numberIsValid(int board[ROWS][COLS], int row, int col, int number);
-
-/* TODO */
 int findUnassignedCell(int board[ROWS][COLS], int *row, int *col);
 int solve(int board[ROWS][COLS]);
 
@@ -47,7 +43,6 @@ int main(int argc, char* argv[]){
   return 0;
 }
 
-/* TODO */
 int findUnassignedCell(int board[ROWS][COLS], int *row, int *col) {
   for(int i=0; i<9 ;i++) {
     for(int j=0; j<9 ;j++) {
@@ -63,7 +58,6 @@ int findUnassignedCell(int board[ROWS][COLS], int *row, int *col) {
   return 0;
 }
 
-/* TODO  TEST*/
 int solve(int board[ROWS][COLS]){
 
   int unassignedRow;
