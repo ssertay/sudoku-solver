@@ -13,6 +13,10 @@ int existsInRow(int board[ROWS][COLS], int row, int col, int number);
 int existsInCol(int board[ROWS][COLS], int row, int col, int number);
 int numberIsValid(int board[ROWS][COLS], int row, int col, int number);
 
+/* TODO */
+int findUnassignedCell(int board[ROWS][COLS], int *row, int *col);
+int solve(int board[ROWS][COLS]);
+
 int main(int argc, char* argv[]){
 
   int board[ROWS][COLS];
@@ -35,7 +39,53 @@ int main(int argc, char* argv[]){
 
   printBoard(board);
 
+  if( solve(board) ){
+    printf("Solved!\n");
+    printBoard(board);
+  }
 
+  return 0;
+}
+
+/* TODO */
+int findUnassignedCell(int board[ROWS][COLS], int *row, int *col) {
+  for(int i=0; i<9 ;i++) {
+    for(int j=0; j<9 ;j++) {
+      if(board[i][j] == 0) {
+        *row = i;
+        *col = j;
+        return 1;
+      }
+    }
+  }
+
+  /* No unassigned cell left. */
+  return 0;
+}
+
+/* TODO  TEST*/
+int solve(int board[ROWS][COLS]){
+
+  int unassignedRow;
+  int unassignedCol;
+
+  if(!findUnassignedCell(board, &unassignedRow, &unassignedCol)){
+    /* Solution found. */
+    return 1;
+  }
+
+  for(int newNum=1; newNum<10 ;newNum++){
+
+    if(numberIsValid(board, unassignedRow, unassignedCol, newNum)){
+      board[unassignedRow][unassignedCol] = newNum;
+
+      if(solve(board)){
+        return 1;
+      }
+
+      board[unassignedRow][unassignedCol] = 0;
+    }
+  }
 
   return 0;
 }
